@@ -293,10 +293,27 @@
       menuButton?.setAttribute('aria-expanded', String(open));
     }
 
+    function updateActiveSidebar() {
+      const currentHash = window.location.hash || '#top';
+      sidebarLinks.forEach(link => {
+        const linkHash = link.hash || '#top';
+        const isActive = currentHash === linkHash || (currentHash && linkHash !== '#' && currentHash.includes(linkHash));
+        link.classList.toggle('active', isActive);
+      });
+    }
+
     menuButton?.addEventListener('click', () => setSidebarOpen(!document.body.classList.contains('sidebar-open')));
     closeButton?.addEventListener('click', () => setSidebarOpen(false));
     backdrop?.addEventListener('click', () => setSidebarOpen(false));
-    sidebarLinks.forEach(link => link.addEventListener('click', () => setSidebarOpen(false)));
+    sidebarLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        setSidebarOpen(false);
+        setTimeout(updateActiveSidebar, 0);
+      });
+    });
+
+    window.addEventListener('hashchange', updateActiveSidebar);
+    window.addEventListener('load', updateActiveSidebar);
   </script>
 </body>
 </html>

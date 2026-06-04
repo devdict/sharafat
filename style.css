@@ -98,10 +98,22 @@
       text-decoration: underline;
     }
 
+    .sidebar a.active {
+      color: #16a34a;
+      font-weight: 700;
+    }
+
+    .sidebar a.active .icon {
+      filter: none;
+      opacity: 1;
+      color: #16a34a;
+    }
+
     .sidebar .icon {
       filter: grayscale(100%) brightness(0.6);
       margin-right: 8px;
       display: inline-block;
+      opacity: 0.8;
     }
 
     .section.grid-2 {
