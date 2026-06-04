@@ -290,6 +290,7 @@
     }
 
     @media (max-width: 900px) {
+      html { scroll-padding-top: 56px; }
       .container {
         grid-template-columns: 1fr;
         padding: 56px 14px 40px;
